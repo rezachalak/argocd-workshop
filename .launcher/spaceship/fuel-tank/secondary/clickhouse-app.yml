@@ -1,0 +1,28 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: clickhouse
+  namespace: argocd
+spec:
+  project: launcher
+  sources:
+    - repoURL: 'https://github.com/rezachalak/argocd-workshop.git'
+      targetRevision: HEAD
+      ref: deploymentRepo
+    - chart: clickhouse
+      repoURL: registry-1.docker.io/bitnamicharts
+      path: clickhouse
+      targetRevision: 7.2.0
+      helm:
+        valueFiles:
+          - $deploymentRepo/apps/spaceship/fuel-tank/secondary/values-override.yml
+  destination:
+    name: in-cluster
+    namespace: clickhouse
+  syncPolicy:
+    automated:
+      selfHeal: true
+      prune: true
+      allowEmpty: true
+    syncOptions:
+      - CreateNamespace=true

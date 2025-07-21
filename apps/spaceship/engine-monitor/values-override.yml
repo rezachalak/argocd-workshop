@@ -1,0 +1,30 @@
+nameOverride: system-monitoring
+namespaceOverride: system-monitoring
+prometheus:
+  prometheusSpec:
+    resources:
+      requests:
+        memory: 400Mi
+    retention: 1d
+    storageSpec:
+      volumeClaimTemplate:
+        spec:
+          storageClassName: default
+          resources:
+            requests:
+              storage: 5Gi
+grafana:
+  ingress:
+    enabled: true
+    ingressClassName: nginx
+    hosts:
+      - grafana.local
+    path: /
+alertmanager:
+  enabled: true
+  ingress:
+    enabled: true
+    ingressClassName: nginx
+    hosts:
+      - alertmanager.local
+    path: /

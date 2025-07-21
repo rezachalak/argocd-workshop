@@ -1,0 +1,28 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: cnpg-operator
+  namespace: argocd
+spec:
+  project: launcher
+  sources:
+    - repoURL: 'https://github.com/rezachalak/argocd-workshop.git'
+      targetRevision: HEAD
+      ref: deploymentRepo
+    - chart: cloudnative-pg
+      repoURL: https://cloudnative-pg.github.io/charts
+      path: cloudnative-pg
+      targetRevision: 0.23.2
+      helm:
+        valueFiles:
+          - $deploymentRepo/apps/spaceship/fuel-tank/main/values-override.yml
+  destination:
+    name: in-cluster
+    namespace: postgres-operator
+  syncPolicy:
+    automated:
+      selfHeal: true
+      prune: true
+      allowEmpty: true
+    syncOptions:
+      - CreateNamespace=true

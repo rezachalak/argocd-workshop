@@ -1,0 +1,48 @@
+global:
+  podLabels:
+    app: argocd
+
+repoServer:
+  resources:
+    requests:
+      cpu: 150m
+      memory: 256Mi
+
+redis-ha:
+  enabled: false
+
+controller:
+  metrics:
+    enabled: true
+    serviceMonitor:
+      enabled: true
+
+dex:
+  enabled: false
+
+applicationSet:
+  resources:
+    limits:
+      memory: 256Mi
+    requests:
+      cpu: 50m
+      memory: 120Mi
+
+server:
+  ingress:
+    enabled: true
+    ingressClassName: "nginx"
+    hostname: "argocd.local"
+    path: /
+    pathType: Prefix
+    tls: false
+  resources:
+    requests:
+      cpu: 150m
+      memory: 256Mi
+  metrics:
+    enabled: true
+    serviceMonitor:
+      enabled: true
+  extraArgs:
+    - --insecure

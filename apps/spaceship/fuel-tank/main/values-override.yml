@@ -1,0 +1,9 @@
+fullnameOverride: main-db
+cluster:
+  instances: 1
+  storage:
+    size: 2Gi
+
+  walStorage:
+    enabled: true
+    size: 100Mi

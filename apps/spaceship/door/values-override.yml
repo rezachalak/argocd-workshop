@@ -1,0 +1,12 @@
+# rbac:
+#   create: false
+controller:
+  allowSnippetAnnotations: true
+
+service:
+  ports:
+    http: 80
+    https: 443
+  targetPorts:
+    http: http
+    https: https

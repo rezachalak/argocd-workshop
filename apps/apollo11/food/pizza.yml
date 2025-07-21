@@ -1,0 +1,26 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: space-pizza
+  namespace: food
+  labels:
+    type: italian
+    gravity: zero-g
+data:
+  description: "The first pizza designed for zero gravity consumption"
+  special_features: |
+    - Anti-float toppings with special adhesive sauce
+    - Cut into bite-sized squares to prevent floating crumbs
+    - Extra spicy to compensate for astronauts' dulled taste buds in space
+  toppings: |
+    - Moon rock mozzarella
+    - Meteor marinara sauce
+    - Cosmic pepperoni
+    - Stardust oregano
+    - Saturn's rings (onions)
+  preparation_time: "T-10 minutes to launch"
+  chef_notes: "Warning: Do not open pizza box in zero gravity without proper training"
+  nutritional_info: |
+    - Calories: 1000 (space explorers need extra energy)
+    - Protein: 42g (the answer to everything)
+    - Space dust: trace amounts

@@ -1,0 +1,23 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: food
+  namespace: argocd
+spec:
+  project: apollo11
+  source:
+    repoURL: https://github.com/rezachalak/argocd-workshop.git
+    path: apps/spaceship/food
+    targetRevision: HEAD
+
+  destination:
+    name: in-cluster
+    namespace: food
+
+  syncPolicy:
+    automated:
+      selfHeal: true
+      prune: true
+      allowEmpty: true
+    syncOptions:
+      - CreateNamespace=true

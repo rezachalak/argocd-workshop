@@ -1,0 +1,29 @@
+---
+checks:
+  addAllBuiltIn: true
+  exclude:
+    - "no-node-affinity"
+    - "no-readiness-probe"
+    - "no-liveness-probe"
+    - "no-extensions-v1beta"
+    - "default-service-account"
+    - "minimum-three-replicas"
+
+# Customize settings for specific checks
+settings:
+  cpu:
+    cpuRequestMin: "100m"
+    cpuLimitMin: "100m"
+  memory:
+    memoryRequestMin: "128Mi"
+    memoryLimitMin: "256Mi"
+  replicas:
+    minReplicas: 1
+
+# Configure which resources to check
+customChecks: []
+
+# Configure which files or directories to ignore
+ignore:
+  - "apps/**/charts/**"
+  - "**/templates/**"

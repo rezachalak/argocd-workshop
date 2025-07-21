@@ -1,0 +1,29 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: kube-prometheus
+  namespace: argocd
+spec:
+  project: launcher
+  sources:
+    - repoURL: 'https://github.com/rezachalak/argocd-workshop.git'
+      targetRevision: HEAD
+      ref: deploymentRepo
+    - chart: kube-prometheus-stack
+      repoURL: https://prometheus-community.github.io/helm-charts
+      targetRevision: 68.4.4
+      helm:
+        releaseName: kube-prometheus-stack
+        valueFiles:
+          - $deploymentRepo/apps/spaceship/engine-monitor/values-override.yml
+  destination:
+    name: in-cluster
+    namespace: system-monitoring
+
+  syncPolicy:
+    automated:
+      selfHeal: true
+      prune: true
+      allowEmpty: true
+    syncOptions:
+      - CreateNamespace=true

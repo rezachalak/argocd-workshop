@@ -1,0 +1,24 @@
+yamlApplicationConfig:
+  kafka:
+    clusters:
+      - name: cl4hana
+        bootstrapServers: cl4hana-kafka-kafka-bootstrap.kafka.svc:9092
+  spring:
+    security:
+      oauth2:
+  auth:
+    type: disabled
+  management:
+    health:
+      ldap:
+        enabled: false
+
+ingress:
+  enabled: true
+  annotations:
+    cert-manager.io/cluster-issuer: "letsencrypt-dns"
+  ingressClassName: "nginx"
+  host: "kafka-ui.{{ localDomain }}"
+  tls:
+    enabled: true
+    secretName: "kafka-ui-tls-secret"

@@ -1,0 +1,30 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: argocd
+  namespace: argocd
+spec:
+  project: launcher
+  sources:
+    - repoURL: 'https://github.com/rezachalak/argocd-workshop.git'
+      targetRevision: HEAD
+      ref: deploymentRepo
+    - chart: argo-cd
+      repoURL: https://argoproj.github.io/argo-helm
+      targetRevision: 8.1.3
+      helm:
+        releaseName: argo-cd
+        valueFiles:
+          - $deploymentRepo/apps/spaceship/engine/values-override.yml
+
+  destination:
+    name: in-cluster
+    namespace: argocd
+
+  syncPolicy:
+    automated:
+      selfHeal: true
+      prune: false
+      allowEmpty: true
+    syncOptions:
+      - CreateNamespace=true

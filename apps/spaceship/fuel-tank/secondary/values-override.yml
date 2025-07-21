@@ -1,0 +1,16 @@
+fullnameOverride: clickhouse
+
+shards: 1
+replicaCount: 1
+
+zookeeper:
+  enabled: false
+
+keeper:
+  enabled: true
+
+persistence:
+  size: 3Gi
+
+metrics:
+  enabled: true

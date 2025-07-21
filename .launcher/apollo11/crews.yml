@@ -1,0 +1,23 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: crews
+  namespace: argocd
+spec:
+  project: apollo11
+  source:
+    repoURL: https://github.com/rezachalak/argocd-workshop.git
+    path: apps/spaceship/crews
+    targetRevision: HEAD
+
+  destination:
+    name: in-cluster
+    namespace: crews
+
+  syncPolicy:
+    automated:
+      selfHeal: true
+      prune: true
+      allowEmpty: true
+    syncOptions:
+      - CreateNamespace=true

@@ -1,0 +1,21 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: neil-armstrong
+  namespace: crews
+  labels:
+    mission: apollo11
+    role: commander
+data:
+  famous_quote: "That's one small step for man, one giant leap for mankind"
+  mission_role: "First human to walk on the Moon"
+  fun_facts: |
+    - Was a test pilot before becoming an astronaut
+    - Carried pieces of the Wright brothers' first airplane to the Moon
+    - His heart rate at lunar landing was only 150 beats per minute
+    - His boot size was 9.5
+  space_achievements: |
+    - Logged 8 days, 14 hours, and 12 minutes in space
+    - Spent 2 hours and 31 minutes walking on the Moon
+    - Collected 21.6 kg of lunar material
+  favorite_space_food: "Peaches"

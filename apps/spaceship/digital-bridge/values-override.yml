@@ -1,0 +1,19 @@
+replicas: 2
+dashboards:
+  enabled: true
+  namespace: system-monitoring
+
+podDisruptionBudget:
+  enabled: true
+  minAvailable: 1
+
+extraEnvs:
+  - name: JAVA_OPTS
+    value: "-Xms256m -Xmx256m"
+
+resources:
+  limits:
+    memory: 384Mi
+  requests:
+    memory: 384Mi
+    cpu: 200m
