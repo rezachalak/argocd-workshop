@@ -11,7 +11,7 @@ spec:
   source:
     directory:
       recurse: true
-    path: .argocd
+    path: .launcher
     repoURL: https://github.com/rezachalak/argocd-workshop.git
     targetRevision: HEAD
   syncPolicy:

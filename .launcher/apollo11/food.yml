@@ -7,7 +7,7 @@ spec:
   project: apollo11
   source:
     repoURL: https://github.com/rezachalak/argocd-workshop.git
-    path: apps/spaceship/food
+    path: apps/apollo11/food
     targetRevision: HEAD
 
   destination:

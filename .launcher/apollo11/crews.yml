@@ -7,7 +7,7 @@ spec:
   project: apollo11
   source:
     repoURL: https://github.com/rezachalak/argocd-workshop.git
-    path: apps/spaceship/crews
+    path: apps/apollo11/crews
     targetRevision: HEAD
 
   destination:
